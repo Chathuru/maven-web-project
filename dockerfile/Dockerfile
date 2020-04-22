@@ -1,5 +1,5 @@
 FROM tomcat
 
-RUN wget --no-check-certificate http://192.168.118.40:8081/repository/maven-releases/local/wso2/webapp/maven-webapp/1.0/maven-webapp-1.0.war -O /usr/local/tomcat/webapps/maven-webapp.war
+RUN wget --no-check-certificate https://github.com/Chathuru/maven-web-project/releases/download/v1.0/maven-webapp.war -O /usr/local/tomcat/webapps/maven-webapp.war
 
 CMD ["catalina.sh", "run"]
