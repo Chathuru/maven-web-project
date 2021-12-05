@@ -28,7 +28,7 @@ jobs:
       - name: Build maven-webapp
         run: docker build . -t chathuru/maven-webapp
       - name: Push to Docker Hub
-        run: docker push chathuru/maven-webapp:v13
+        run: docker push chathuru/maven-webapp
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
