@@ -1,0 +1,9 @@
+replicaCount: 1
+
+image:
+  repository: chathuru/maven-webapp
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8080

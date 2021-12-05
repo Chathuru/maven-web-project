@@ -1,4 +1,3 @@
 # maven-web-project
 
-## Section 1
-## Section 2
+[![maven-webapp-docker-release](https://github.com/Chathuru/maven-web-project/actions/workflows/release.yml/badge.svg)](https://github.com/Chathuru/maven-web-project/actions/workflows/release.yml)
