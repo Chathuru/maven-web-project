@@ -1,4 +1,4 @@
-name: maven-webapp-docker-release
+name: maven-webapp-build-and-release
 
 on:
   push:
