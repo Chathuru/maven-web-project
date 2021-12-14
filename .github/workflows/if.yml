@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "${{ github.event.inputs.deploy }}"
           echo "*** ${{ github.event.ref }} ***"
-      - if: github.event.inputs.deploy
+      - if: ( ! github.event.inputs.deploy )
         run: |
           echo "Hi ..."
       - if: github.event.inputs.deploy == 'true'
