@@ -16,9 +16,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - run: cat README.md
-        if: ${{ github.event.inputs.deploy }}
-
       - run: echo "*** ${{ github.event.ref }} ***"
 
       - name: Set up JDK 8
@@ -34,3 +31,11 @@ jobs:
 
       - name: Run Tests
         run: mvn test
+
+  docker:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: ${{ github.event.inputs.deploy }}
+    steps:
+      - run: docker build . -t maven-webapp
