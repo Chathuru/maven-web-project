@@ -11,16 +11,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ github.event.inputs.deploy }}
+      - if: github.event.inputs.deploy
         run: |
           echo "${{ github.event.inputs.deploy }}"
           echo "*** ${{ github.event.ref }} ***"
-      - if: ${{ ! github.event.inputs.deploy }}
+      - if: ! github.event.inputs.deploy
         run: |
           echo "Hi ..."
-      - if: ${{ github.event.inputs.deploy }} == 'true'
+      - if: github.event.inputs.deploy == 'true'
         run: |
           echo "Hi ... true"
-      - if: ${{ github.event.inputs.deploy }} == 'false'
+      - if: github.event.inputs.deploy == 'false'
         run: |
           echo "Hi ... false"
