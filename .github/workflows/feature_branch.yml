@@ -6,6 +6,7 @@ on:
       deploy:
         required: false
         default: false
+        description: ''
         type: boolean
 
 jobs:
