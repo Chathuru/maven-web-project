@@ -5,7 +5,6 @@ on:
     inputs:
       deploy:
         required: false
-        default: false
         description: ''
         type: boolean
 jobs:
@@ -19,3 +18,9 @@ jobs:
       - if: ${{ ! github.event.inputs.deploy }}
         run: |
           echo "Hi ..."
+      - if: ${{ github.event.inputs.deploy }} == 'true'
+        run: |
+          echo "Hi ... true"
+      - if: ${{ github.event.inputs.deploy }} == 'false'
+        run: |
+          echo "Hi ... false"
