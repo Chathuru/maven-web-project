@@ -5,7 +5,7 @@ on:
     inputs:
       deploy:
         required: false
-        default: 'false'
+        default: true
         description: ''
         type: boolean
 
@@ -16,7 +16,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - run: echo "*** ${{ github.event.ref }} ***"
+      - run: |
+          echo "${{ github.event.inputs.deploy }}"
+          echo "*** ${{ github.event.ref }} ***"
 
       - name: Set up JDK 8
         uses: actions/setup-java@v2
@@ -27,7 +29,7 @@ jobs:
           cache: maven
 
       - name: Compile Project
-        run: mvn compile
+        run: mvn package
 
       - name: Run Tests
         run: mvn test
