@@ -1,0 +1,21 @@
+name: (Optional) Dev Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        required: false
+        default: false
+        description: ''
+        type: boolean
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ github.event.inputs.deploy }}
+        run: |
+          echo "${{ github.event.inputs.deploy }}"
+          echo "*** ${{ github.event.ref }} ***"
+      - if: ${{ ! github.event.inputs.deploy }}
+        run: |
+          echo "Hi ..."
