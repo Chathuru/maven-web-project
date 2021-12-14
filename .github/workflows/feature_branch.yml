@@ -35,4 +35,4 @@ jobs:
         run: mvn test
         
       - run: docker build . -t maven-webapp
-        if: ${{ github.event.inputs.deploy }}
+        if: ( ${{ github.event.inputs.deploy }} )
