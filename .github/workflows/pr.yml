@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
     inputs:
       deploy:
-        required: false
-        default: false
-        description: ''
         type: boolean
+        default: false
+        required: false
+        description: Deploy on EKS and Test.
 
 jobs:
   pr_test:
