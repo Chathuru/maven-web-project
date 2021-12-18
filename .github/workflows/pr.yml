@@ -4,6 +4,13 @@ on:
   pull_request:
     branches:
       - master
+  workflow_dispatch:
+    inputs:
+      deploy:
+        required: false
+        default: false
+        description: ''
+        type: boolean
 
 jobs:
   pr_test:
@@ -21,7 +28,8 @@ jobs:
           cache: maven
 
       - name: Compile Project
-        run: mvn compile
+        run: mvn package
 
-      - name: Run Tests
-        run: mvn test
+      - name: Login to Docker Hub
+        run: docker build . -t maven-webapp
+        if: ( github.event.inputs.deploy == 'true' && success() )
