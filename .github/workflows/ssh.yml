@@ -1,24 +1,22 @@
 name: SSH action
 on:
   workflow_dispatch:
-    inputs:
-      deploy:
-        required: false
-        description: ''
-        type: boolean
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: ssh scp ssh pipelines
-      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-      with:
-        host: ${{ secrets.DC_HOST }}
-        user: ${{ secrets.DC_USER }}
-        pass: ${{ secrets.DC_KEY }}
-        connect_timeout: 10s
-        first_ssh: |
+    - name: Deploy in EC2
+      env:
+          PRIVATE_KEY: ${{ secrets.DC_KEY  }}
+          HOSTNAME : ${{ secrets.DC_HOST  }}
+          USER_NAME : ${{ secrets.DC_USER  }}  
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          
           cd /home/ubuntu/restrata-offline-resilience-parent
           docker-compose -f docker-compose-qa.yml stop
           docker-compose -f docker-compose-qa.yml rm
           docker-compose -f docker-compose-qa.yml up -d
+        '
