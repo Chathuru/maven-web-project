@@ -1,0 +1,24 @@
+name: SSH action
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        required: false
+        description: ''
+        type: boolean
+jobs:
+  build:
+    runs-on: ubuntu
+    steps:
+    - name: ssh scp ssh pipelines
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      with:
+        host: ${{ secrets.DC_HOST }}
+        user: ${{ secrets.DC_USER }}
+        pass: ${{ secrets.DC_KEY }}
+        connect_timeout: 10s
+        first_ssh: |
+          cd /home/ubuntu/restrata-offline-resilience-parent
+          docker-compose -f docker-compose-qa.yml stop
+          docker-compose -f docker-compose-qa.yml rm
+          docker-compose -f docker-compose-qa.yml up -d
