@@ -12,6 +12,6 @@ jobs:
     steps:
       - run: |
           cd /home/ubuntu/restrata-offline-resilience-parent
-          docker-compose stop
-          docker-compose rm -f docker-compose-qa.yml
+          docker-compose -f docker-compose-qa.yml stop
+          docker-compose -f docker-compose-qa.yml rm
           docker-compose -f docker-compose-qa.yml up -d
