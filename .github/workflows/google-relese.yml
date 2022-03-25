@@ -1,0 +1,21 @@
+name: SSH action
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: simple
+          command: github-release
+      - uses: actions/checkout@v2
+      - name: tag major and minor versions
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          echo v${{ steps.release.outputs.major }}
+          echo v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
+          echo "Release v${{ steps.release.outputs.major }}"
+ 
