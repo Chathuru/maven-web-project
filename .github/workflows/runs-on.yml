@@ -13,6 +13,6 @@ on:
 
 jobs:
   build:
-    runs-on: github.event.inputs.deploy
+    runs-on: ${{ github.event.inputs.deploy }}
     steps:
       - run: echo $(curl -s ipinfo.io/ip)
