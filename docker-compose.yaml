@@ -1,0 +1,17 @@
+version: "3.7"
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.1.0/24
+        
+ services:
+  mongo:
+    image: nginx
+    networks:
+      net:
+        ipv4_address: 172.20.1.2
+        aliases:
+          - nginx
