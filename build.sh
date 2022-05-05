@@ -16,4 +16,6 @@ function calc_build_version() {
 build_ts="$(/bin/date +%y%m%d_%H%M%S)"
 build_ver="$(calc_build_version)"
 
-echo "${build_ts}-${build_ver}"
+//echo "${build_ts}-${build_ver}"
+echo export rvn_ver="${build_ts}-${build_ver}"
+echo rvn_ver="${build_ts}-${build_ver}" > rvn_ver
