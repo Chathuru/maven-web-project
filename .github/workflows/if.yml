@@ -25,3 +25,6 @@ jobs:
         run: |
           echo "Hi ... false"
           echo ${{ github.ref }}
+      - if: success() && (github.ref == 'refs/heads/master')
+        run: |
+          echo ${{ github.ref }}
