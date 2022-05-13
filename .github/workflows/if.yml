@@ -24,3 +24,4 @@ jobs:
       - if: github.event.inputs.deploy == 'false'
         run: |
           echo "Hi ... false"
+          echo ${{ github.ref }}
