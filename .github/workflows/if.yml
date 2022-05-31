@@ -11,7 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - if: github.event.inputs.deploy
+      - name: Release-${GITHUB_RUN_NUMBER}
+        if: github.event.inputs.deploy
         run: |
           echo "${{ github.event.inputs.deploy }}"
           echo "*** ${{ github.event.ref }} ***"
