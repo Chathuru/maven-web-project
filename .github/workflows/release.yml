@@ -28,7 +28,7 @@ jobs:
           debug: true
           ignore_ssl_errors: false
           log_level: debug
-          overwrite_mode: FailIfExists
+          overwrite_mode: IgnoreIfExists
           packages: stage.1.0.0.zip
 
       - name: Create Release in Octopus Deploy
