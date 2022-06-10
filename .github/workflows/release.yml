@@ -13,7 +13,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      - run: zip -r stage.1.0.0.zip .
+      - run: zip -r stage.1.1.0.zip .
 
       - name: Install Octopus CLI
         uses: OctopusDeploy/install-octopus-cli-action@v1.1.6
@@ -39,4 +39,4 @@ jobs:
           debug: true
           project: stage
           deploy_to: stage
-          package: stage:1.0.0
+          package: stage:1.1.0
