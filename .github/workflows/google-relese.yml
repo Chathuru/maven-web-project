@@ -24,8 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.ARTIFACT_VERSION }}
-          release_name: ${{ env.ARTIFACT_VERSION }} - ${{ github.event.head_commit.message }}
+          tag_name: v1.0.0.0
+          release_name: ${{ github.event.head_commit.message }}
           body: |
             Automated release
           draft: false
