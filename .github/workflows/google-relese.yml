@@ -19,3 +19,14 @@ jobs:
           echo v${{ steps.release.outputs.major }}
           echo v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
           echo "Release v${{ steps.release.outputs.major }}" 
+      - name: release
+        uses: chathuru/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+        with:
+          tag_name: ${{ env.ARTIFACT_VERSION }}
+          release_name: ${{ env.ARTIFACT_VERSION }} - ${{ github.event.head_commit.message }}
+          body: |
+            Automated release
+          draft: false
+          prerelease: false
