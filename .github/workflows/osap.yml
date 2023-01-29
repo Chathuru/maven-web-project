@@ -1,0 +1,15 @@
+name: testing web
+
+on:
+  workflow_dispatch:
+
+jobs:
+  apicafe_io:
+    runs-on: ubuntu-latest
+    name: Scan the webapplication
+    steps:
+      - name: Scan TesingSite
+        uses: zaproxy/action-full-scan@v0.2.0
+        with:
+          target: 'https://openbankingdirectory.io/'
+          
