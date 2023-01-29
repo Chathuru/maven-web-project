@@ -9,7 +9,7 @@ jobs:
     name: Scan the webapplication
     steps:
       - name: Scan TesingSite
-        uses: zaproxy/action-full-scan@v0.2.0
+        uses: zaproxy/action-full-scan@v0.4.0
         with:
           target: 'https://openbankingdirectory.io/'
           
