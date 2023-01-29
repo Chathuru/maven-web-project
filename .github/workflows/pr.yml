@@ -1,9 +1,6 @@
 name: maven-webapp-pr
 
 on:
-  pull_request:
-    branches:
-      - master
   workflow_dispatch:
     inputs:
       deploy:
