@@ -20,3 +20,26 @@ jobs:
             Automated release
           draft: false
           prerelease: false
+
+      - name: Generate and email notes
+        uses: Chathuru/jira-github-changelog@0.0.1
+        id: changelog
+        with:
+          head: origin/master
+          base: origin/dev
+          jira-code: '(RP|RO)'
+          jira-host: ${{ secrets.JIRA_HOST }}
+          jira-username: ${{ secrets.JIRA_USERNAME }}
+          jira-password: ${{ secrets.JIRA_TOKEN }}
+          pdf: false
+          unshallow: false
+
+      - name: Get the changelog message
+        run: |
+          export SUMMARY=$(echo '${{ steps.changelog.outputs.markdown }}' | jq '.markdown')
+          printf "$SUMMARY"
+          printf "$SUMMARY" > CHANGELOG.md
+          printf "$SUMMARY" >> $GITHUB_STEP_SUMMARY
+
+      - name: Print
+        run: cat CHANGELOG.md
