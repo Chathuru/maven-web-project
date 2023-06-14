@@ -1,4 +1,4 @@
-name: Google Relese
+name: Create Release
 on:
   workflow_dispatch:
 
@@ -6,25 +6,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
-        id: release
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: simple
-          command: github-release
-      - uses: actions/checkout@v2
-      - name: tag major and minor versions
-        if: ${{ steps.release.outputs.release_created }}
-        run: |
-          echo v${{ steps.release.outputs.major }}
-          echo v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
-          echo "Release v${{ steps.release.outputs.major }}" 
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
       - name: release
-        uses: chathuru/create-release@latest
+        uses: chathuru/create-release@v0.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0.0
+          tag_name: v1.0.0
           release_name: ${{ github.event.head_commit.message }}
           body: |
             Automated release
