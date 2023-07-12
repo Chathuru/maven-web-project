@@ -131,9 +131,11 @@ jobs:
           distribution: adopt
           java-version: 15
           cache: maven
+      - run: sleep 30
 
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ always() }}
     needs:
       - map-service-build
       - asset-service-build
