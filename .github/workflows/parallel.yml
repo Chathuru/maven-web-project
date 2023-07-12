@@ -53,7 +53,7 @@ jobs:
       ARTIFACT_VERSION: ${{ steps.artifact-version.outputs.ARTIFACT_VERSION }}
 
   map-service-build:
-    if: ${{ github.event.inputs.map_service }} == 'true'
+    if: ${{ github.event.inputs.map_service == 'true' }}
     runs-on: ubuntu-latest
     needs: pre-build
 
@@ -69,7 +69,7 @@ jobs:
           cache: maven
 
   asset-service-build:
-    if: ${{ github.event.inputs.asset_service }} == 'true'
+    if: ${{ github.event.inputs.asset_service == 'true' }}
     runs-on: ubuntu-latest
     needs: pre-build
 
@@ -85,7 +85,7 @@ jobs:
           cache: maven
 
   asset-location-config-service-build:
-    if: ${{ github.event.inputs.asset_location_config_service }} == 'true'
+    if: ${{ github.event.inputs.asset_location_config_service == 'true' }}
     runs-on: ubuntu-latest
     needs: pre-build
 
@@ -101,7 +101,7 @@ jobs:
           cache: maven
 
   asset-location-service-build:
-    if: ${{ github.event.inputs.asset_location_service }} == 'true'
+    if: ${{ github.event.inputs.asset_location_service == 'true' }}
     runs-on: ubuntu-latest
     needs: pre-build
 
@@ -117,7 +117,7 @@ jobs:
           cache: maven
 
   arc-service-build:
-    if: ${{ github.event.inputs.arc_service }} == 'true'
+    if: ${{ github.event.inputs.arc_service == 'true' }}
     runs-on: ubuntu-latest
     needs: pre-build
 
