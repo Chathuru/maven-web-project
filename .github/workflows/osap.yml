@@ -1,4 +1,4 @@
-name: testing web
+name: MS Teams
 
 on:
   workflow_dispatch:
@@ -8,13 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Scan the webapplication
     steps:
-      - run:
-          echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-          echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-          echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
-          source ~/.bashrc
-          gem install jekyll bundler
-          jekyll new myblog
-          cd myblog
-          
-          
+      - uses: toko-bifrost/ms-teams-deploy-card@master
+        with:
+          github-token: ${{ github.token }}
+          webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
+          card-layout-start: cozy
+
+      - name: Notify dedicated teams channel
+        uses: jdcargile/ms-teams-notification@v1.3
+        with:
+          github-token: ${{ github.token }}
+          ms-teams-webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
+          notification-summary: Your custom notification message
+          notification-color: 28a745
