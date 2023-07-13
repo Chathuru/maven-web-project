@@ -8,14 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Scan the webapplication
     steps:
-      - uses: toko-bifrost/ms-teams-deploy-card@master
+      - uses: skitionek/notify-microsoft-teams@master
         with:
-          github-token: ${{ github.token }}
-          webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
-          enable-view-status-action: false
-          enable-review-diffs-action: false
-          include-files: false
-          custom-facts: |
-            - name: Custom Fact Name 1
-              value: Custom Fact Value 1
-
+          webhook_url: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
