@@ -12,6 +12,8 @@ jobs:
         with:
           webhook_url: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
           job: ${{ toJson(job) }}
+          steps: ${{ toJson(steps) }}
+          needs: ${{ toJson(needs) }}
           raw: >-
             {
               "@type": "MessageCard",
