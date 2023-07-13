@@ -11,4 +11,18 @@ jobs:
       - uses: skitionek/notify-microsoft-teams@master
         with:
           webhook_url: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
-          overwrite: "{title: `Overwrote title in ${workflow_link}`}"
+          raw: >-
+            {
+              "@type": "MessageCard",
+              "@context": "http://schema.org/extensions",
+              "themeColor": "#999",
+              "title": "TITLE",
+              "summary": "SUMMARY",
+              "sections": [
+                {
+                  "activityTitle": "Activity Title",
+                  "activitySubtitle": "Activity Subtitle",
+                  "activityImage": "https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/success.png"
+                }
+              ]
+            }
