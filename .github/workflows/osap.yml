@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Scan the webapplication
     steps:
-      - uses: skitionek/notify-microsoft-teams@master
+      - uses: skitionek/notify-microsoft-teams@master # https://github.com/marketplace/actions/notify-microsoft-teams
         with:
           webhook_url: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
+          job: ${{ toJson(job) }}
           raw: >-
             {
               "@type": "MessageCard",
