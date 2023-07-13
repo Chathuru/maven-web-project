@@ -12,7 +12,10 @@ jobs:
         with:
           github-token: ${{ github.token }}
           webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
-          enable-view-status: false
-          enable-review-diffs: false
+          enable-view-status-action: false
+          enable-review-diffs-action: false
           include-files: false
+          custom-facts: |
+            - name: Custom Fact Name 1
+              value: Custom Fact Value 1
 
