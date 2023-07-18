@@ -7,7 +7,6 @@ on:
       version:
         type: string
         required: true
-    secrets: inherit
 
 jobs:
   build:
