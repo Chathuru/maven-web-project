@@ -16,6 +16,8 @@ jobs:
         id: artifact-version
         with:
           version: test
+          
+      - run: echo ${{ steps.artifact-version.outputs.ARTIFACT_VERSION }}
 
     outputs:
       ARTIFACT_VERSION: ${{ steps.artifact-version.outputs.ARTIFACT_VERSION }}
