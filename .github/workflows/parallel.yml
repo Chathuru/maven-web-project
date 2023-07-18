@@ -60,6 +60,7 @@ jobs:
     with:
       service_name: map
       version: latest
+      aws_secrets: secrets
 
   asset-service-build:
     if: ${{ github.event.inputs.asset_service == 'true' }}
