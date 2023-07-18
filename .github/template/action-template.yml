@@ -1,0 +1,20 @@
+name: build
+description: build service
+
+inputs:
+  version:
+    required: true
+
+outputs:
+  outputname:
+    description: some output
+    value: ${{ steps.step-id.outputs.some-output }}
+
+runs:
+  using: composite
+  steps:
+  - name: echo
+    run: echo "version: ${{ inputs.version }}"
+  - name: output
+    id: step-id
+    run: echo "version: ${{ inputs.version }}" >> $GITHUB_OUTPUT
