@@ -10,11 +10,12 @@ on:
     secrets: inherit
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-  - name: Check out repository code
-    uses: actions/checkout@v3
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
 
-  - run: |
-      echo ${{ inputs.service_name }}
-      echo ${{ inputs.version }}
+    - run: |
+        echo ${{ inputs.service_name }}
+        echo ${{ inputs.version }}
