@@ -1,0 +1,29 @@
+name: DEV - Build and Deploy (Parallel Composit)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pre-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 1.15
+        uses: .github/template/build/
+        id: artifact-version
+        with:
+          version: test
+
+    outputs:
+      ARTIFACT_VERSION: ${{ steps.artifact-version.outputs.ARTIFACT_VERSION }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - pre-build
+
+    steps:
+      - run: echo "#### Finished\n${{ needs.pre-build.outputs.ARTIFACT_VERSION}}" >> ${GITHUB_STEP_SUMMARY}
