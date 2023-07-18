@@ -9,6 +9,9 @@ on:
       version:
         type: string
         required: true
+    secrets:
+      aws_secrets:
+        required: true
 
 jobs:
   build:
@@ -20,3 +23,4 @@ jobs:
     - run: |
         echo ${{ inputs.service_name }}
         echo ${{ inputs.version }}
+        echo ${{ secrets.aws_secrets }}
