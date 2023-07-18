@@ -57,6 +57,9 @@ jobs:
     needs: pre-build
     uses: ./.github/workflows/reusable-workflows.yml
     secrets: inherit
+    with:
+      service_name: map
+      version: latest
 
   asset-service-build:
     if: ${{ github.event.inputs.asset_service == 'true' }}
