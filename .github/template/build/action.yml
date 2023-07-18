@@ -6,12 +6,9 @@ inputs:
     required: true
 
 outputs:
-  outputname:
+  artifact_version:
     description: some output
-    value: ${{ steps.step-id.outputs.ARTIFACT_VERSION }}
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+    value: ${{ steps.step-id.outputs.artifact_version }}
 
 runs:
   using: composite
@@ -20,15 +17,11 @@ runs:
     run: echo ${{ inputs.version }}
     shell: bash
   
-  - id: random-number-generator
-    run: echo "random-number=100" >> $GITHUB_OUTPUT
-    shell: bash
-  
   - name: output
     shell: bash
     id: step-id
     run: |
       export VERSION=$(grep --max-count=1 '<version>' pom.xml | awk -F '>' '{ print $2 }' | awk -F '<' '{ print $1 }')
       export ARTIFACT_VERSION="${VERSION}.${GITHUB_RUN_NUMBER}-dev"
-      echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> ${GITHUB_OUTPUT}
-      echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}"
+      echo "artifact_version=${ARTIFACT_VERSION}" >> ${GITHUB_OUTPUT}
+      echo "artifact_version=${ARTIFACT_VERSION}"
