@@ -56,10 +56,11 @@ jobs:
     if: ${{ github.event.inputs.map_service == 'true' }}
     needs: pre-build
     uses: ./.github/workflows/reusable-workflows.yml
-    secrets: inherit
+    #secrets: inherit
     with:
       service_name: map
       version: latest
+    secrets:
       aws_secrets: secrets
 
   asset-service-build:
