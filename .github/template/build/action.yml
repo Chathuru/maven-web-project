@@ -14,7 +14,7 @@ runs:
   using: composite
   steps:
   - name: echo
-    run: echo "version: ${{ inputs.version }}"
+    run: echo ${{ inputs.version }}
   # - name: output
   #   id: step-id
   #   run: |
