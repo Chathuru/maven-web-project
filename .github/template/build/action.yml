@@ -9,6 +9,9 @@ outputs:
   outputname:
     description: some output
     value: ${{ steps.step-id.outputs.ARTIFACT_VERSION }}
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
 
 runs:
   using: composite
@@ -16,6 +19,11 @@ runs:
   - name: echo
     run: echo ${{ inputs.version }}
     shell: bash
+  
+  - id: random-number-generator
+    run: echo "random-number=100" >> $GITHUB_OUTPUT
+    shell: bash
+  
   - name: output
     shell: bash
     id: step-id
