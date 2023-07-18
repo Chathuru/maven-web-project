@@ -5,19 +5,19 @@ inputs:
   version:
     required: true
 
-outputs:
-  outputname:
-    description: some output
-    value: ${{ steps.step-id.outputs.ARTIFACT_VERSION }}
+# outputs:
+#   outputname:
+#     description: some output
+#     value: ${{ steps.step-id.outputs.ARTIFACT_VERSION }}
 
 runs:
   using: composite
   steps:
   - name: echo
     run: echo "version: ${{ inputs.version }}"
-  - name: output
-    id: step-id
-    run: |
-      export VERSION=$(grep --max-count=1 '<version>' pom.xml | awk -F '>' '{ print $2 }' | awk -F '<' '{ print $1 }')
-      export ARTIFACT_VERSION="${VERSION}.${GITHUB_RUN_NUMBER}-dev"
-      echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> ${GITHUB_OUTPUT}
+  # - name: output
+  #   id: step-id
+  #   run: |
+  #     export VERSION=$(grep --max-count=1 '<version>' pom.xml | awk -F '>' '{ print $2 }' | awk -F '<' '{ print $1 }')
+  #     export ARTIFACT_VERSION="${VERSION}.${GITHUB_RUN_NUMBER}-dev"
+  #     echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> ${GITHUB_OUTPUT}
