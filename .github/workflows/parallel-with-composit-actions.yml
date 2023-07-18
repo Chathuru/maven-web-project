@@ -17,7 +17,9 @@ jobs:
         with:
           version: test
           
-      - run: echo ${{ steps.artifact-version.outputs.ARTIFACT_VERSION }}
+      - run: |
+          echo ${{ steps.artifact-version.outputs.ARTIFACT_VERSION }}
+          echo ${{ steps.artifact-version.outputs.random-number }}
 
     outputs:
       ARTIFACT_VERSION: ${{ steps.artifact-version.outputs.ARTIFACT_VERSION }}
