@@ -55,7 +55,7 @@ jobs:
   map-service-build:
     if: ${{ github.event.inputs.map_service == 'true' }}
     needs: pre-build
-    uses: Chathuru/maven-web-project/.github/template/build/reusable-workflows.yml@master
+    uses: Chathuru/maven-web-project/.github/workflows/reusable/reusable-workflows.yml@master
 
   asset-service-build:
     if: ${{ github.event.inputs.asset_service == 'true' }}
