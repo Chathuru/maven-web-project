@@ -27,4 +27,4 @@ jobs:
           git add report.txt
           git commit -m "Automated report"
           git push origin changelog
-          gh pr create --base master --head changelog --title "Changelog Update"
+          gh pr create --base master --head changelog --title "Changelog Update" --body "Changelog Update"
