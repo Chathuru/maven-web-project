@@ -13,21 +13,35 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Commit report
-        run: |
-          git checkout -b changelog origin/master
-          git pull origin changelog --rebase
-          git config --global user.name 'github-action-bot'
-          git config --global user.email 'github-action-bot@noreply.github.com'
+#      - name: Commit report
+#        run: |
+#          git checkout -b changelog origin/master
+#          git pull origin changelog --rebase
+#          git config --global user.name 'github-action-bot'
+#          git config --global user.email 'github-action-bot@noreply.github.com'
 
       - name: Create report file
         run: date +%s > report.txt
 
-      - name: Commit report
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git add report.txt
-          git commit -m "Automated report"
-          git push origin changelog
-          gh pr create --base master --head changelog --title "Changelog Update" --body "Changelog Update"
+#      - name: Commit report
+#        env:
+#          GH_TOKEN: ${{ github.token }}
+#        run: |
+#          git add report.txt
+#          git commit -m "Automated report"
+#          git push origin changelog
+#          gh pr create --base master --head changelog --title "Changelog Update" --body "Changelog Update"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ github.token }}
+          commit-message: Update Report
+          committer: github-action-bot <github-action-bot@noreply.github.com>
+          author: github-action-bot <github-action-bot@noreply.github.com>
+          signoff: false
+          branch: changelog
+          delete-branch: true
+          title: 'Update changelog'
+          body: 'Update changelog'
+          draft: false
