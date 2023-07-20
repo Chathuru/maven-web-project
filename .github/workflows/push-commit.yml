@@ -21,9 +21,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           git checkout -b changelog origin/master
+          git pull origin changelog
           git config --global user.name 'github-action-bot'
           git config --global user.email 'github-action-bot@noreply.github.com'
-          git add .
+          git add report.txt
           git commit -m "Automated report"
           git push origin changelog
           gh pr create --base master --head changelog --title "Changelog Update"
