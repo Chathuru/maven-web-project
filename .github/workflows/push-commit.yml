@@ -13,6 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Commit report
+        run: |
+          git checkout -b changelog origin/master
+          git pull origin changelog --rebase
+          git config --global user.name 'github-action-bot'
+          git config --global user.email 'github-action-bot@noreply.github.com'
+
       - name: Create report file
         run: date +%s > report.txt
 
@@ -20,10 +27,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git checkout -b changelog origin/master
-          git pull origin changelog --rebase
-          git config --global user.name 'github-action-bot'
-          git config --global user.email 'github-action-bot@noreply.github.com'
           git add report.txt
           git commit -m "Automated report"
           git push origin changelog
