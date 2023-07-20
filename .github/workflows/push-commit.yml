@@ -1,0 +1,25 @@
+name: Push commit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create report file
+        run: date +%s > report.txt
+
+      - name: Commit report
+        run: |
+          git config --global user.name 'github-action-bot'
+          git config --global user.email 'github-action-bot@noreply.github.com'
+          git add report.txt
+          git commit -m "Automated report"
+          git push

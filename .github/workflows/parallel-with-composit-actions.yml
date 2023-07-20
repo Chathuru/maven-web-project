@@ -1,4 +1,4 @@
-name: DEV - Build and Deploy (Parallel Composit)
+name: DEV - Build and Deploy (Parallel Composite)
 
 on:
   workflow_dispatch:

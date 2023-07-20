@@ -1,4 +1,4 @@
-name: Create Release
+name: Generate Changelog from JIRA ID from Commits
 on:
   workflow_dispatch:
 
@@ -8,18 +8,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-
-      - name: release
-        uses: chathuru/create-release@v0.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0
-          release_name: ${{ github.event.head_commit.message }}
-          body: |
-            Automated release
-          draft: false
-          prerelease: false
+          fetch-depth: 0
 
       - name: Generate and email notes
         uses: Chathuru/jira-github-changelog@0.0.1

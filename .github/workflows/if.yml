@@ -11,15 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.13
-          cache: npm
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@x-venture'
-        env:
-          NODE_AUTH_TOKEN: xxxxx
       - run: cat .npmrc
       - name: Release-${{ env.GITHUB_RUN_NUMBER }}
         if: github.event.inputs.deploy
