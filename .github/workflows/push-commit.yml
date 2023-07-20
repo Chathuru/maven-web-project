@@ -21,7 +21,8 @@ jobs:
 #          git config --global user.email 'github-action-bot@noreply.github.com'
 
       - name: Create report file
-        run: date +%s > report.txt
+        run: |
+          date +%s > report.txt
 
 #      - name: Commit report
 #        env:
@@ -31,6 +32,28 @@ jobs:
 #          git commit -m "Automated report"
 #          git push origin changelog
 #          gh pr create --base master --head changelog --title "Changelog Update" --body "Changelog Update"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.token }}
+          commit-message: Update Report
+          committer: github-action-bot <github-action-bot@noreply.github.com>
+          author: github-action-bot <github-action-bot@noreply.github.com>
+          signoff: false
+          branch: changelog
+          delete-branch: true
+          title: 'Update changelog'
+          body: 'Update changelog'
+          draft: false
+
+      - uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - name: Create report file
+        run: |
+          date +%s > report.txt
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
