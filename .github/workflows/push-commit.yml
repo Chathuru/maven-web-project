@@ -21,7 +21,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           git checkout -b changelog origin/master
-          git pull origin changelog
+          git pull origin changelog --rebase
           git config --global user.name 'github-action-bot'
           git config --global user.email 'github-action-bot@noreply.github.com'
           git add report.txt
