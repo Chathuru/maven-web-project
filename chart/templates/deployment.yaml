@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: alpine
+          image: ubuntu
           command:
           - sleep
           - infinity
